@@ -1,5 +1,9 @@
 package com.sri.sboot.crud.model;
 
+import java.util.List;
+
+import javax.persistence.ElementCollection;
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -20,22 +24,45 @@ public class Person {
 	private String occupation;
 	private String location;
 	
+	@ElementCollection
+	List<String> friends;
+	
+	@ElementCollection
+	List<Course> cources;
+	
 	public Person() {
 		super();
 	}
 	
-	public Person(int phno, String name, String occupation, String location) {
+	public Person(int phno, String name, String occupation, String location, List<String> friends,
+			List<Course> cources) {
 		super();
 		this.phno = phno;
 		this.name = name;
 		this.occupation = occupation;
 		this.location = location;
+		this.friends = friends;
+		this.cources = cources;
 	}
-	@Override
-	public String toString() {
-		return "Person [phno=" + phno + ", name=" + name + ", occupation=" + occupation + ", location=" + location
-				+ "]";
+
+	public List<Course> getCources() {
+		return cources;
 	}
+
+	public void setCources(List<Course> cources) {
+		this.cources = cources;
+	}
+	
+	public List<String> getFriends() {
+		return friends;
+	}
+
+
+	public void setFriends(List<String> friends) {
+		this.friends = friends;
+	}
+
+
 	public int getPhno() {
 		return phno;
 	}
